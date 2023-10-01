@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Submit valid Form</title>
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/c4254e24a8.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script src="script.js"></script>
+  </head>
+  <body>
+   
+    <div class="container">
+      <form onsubmit="alert(); sendEmail(); reset();  return false; ">        
+        <i class="fas fa-paper-plane"></i>
+
+        <div class="input-group">
+          <label>Full Name</label>
+          <input
+            type="text"
+            placeholder="Enter your name"
+            id="contact-name"
+            onkeyup="validateName()"
+          />
+          <span id="name-error"></span>
+        </div>
+
+        <div class="input-group">
+          <label>Phone No.</label>
+          <input
+            type="tel"
+            placeholder="123 456 7890"
+            id="contact-phone"
+            onkeyup="validatePhone()"
+          />
+          <span id="phone-error"></span>
+        </div>
+
+        <div class="input-group">
+          <label>Email Id</label>
+          <input
+            type="email"
+            placeholder="Enter Email"
+            id="contact-email"
+            onkeyup="validateEmail()"
+          />
+          <span id="email-error"></span>
+        </div>
+
+        <div class="input-group">
+          <label>Your Message</label>
+          <textarea
+            rows="5"
+            placeholder="Enter your message"
+            id="contact-message"
+            onkeyup="validateMessage()"
+          ></textarea>
+          <span id="message-error"></span>
+        </div>
+
+        <button type="submit">Submit</button>
+        <span id="submit-error"></span>
+      </form>
+    </div>
+    <script> 
+    function sendEmail() {
+    validateForm();
+  Email.send({
+    Host: "smtp.gmail.com",
+    Username: "inform2timcooper@gmail.com",
+    Password: "9865719584",
+    To: "vigneshk2110@gmail.com",
+    From: document.getElementById("contact-email").value,
+    Subject: "Contact Form of " + document.getElementById("contact-name"),
+    Body:
+    "<b>Contact Form " +
+      "<br>Name: " +
+      document.getElementById("contact-name").value +
+      "<br> Phone: " +
+      document.getElementById("contact-phone").value +
+      "<br> Email: " +
+      document.getElementById("contact-email").value +
+      "<br> Message: " +
+      document.getElementById("contact-name").value,
+  }).then(
+    message => alert("Email Sent"));
+}
+
+
+</script>
+  </body>
+</html>
